@@ -1,7 +1,8 @@
 'use strict'
 
 const db = require('APP/db')
-const Album = db.model('albums')
+// EI: small typo here breaking things
+const Album = db.model('album')
 const {mustBeLoggedIn, forbidden, selfOnly, adminOnly} = require('./auth.filters')
 const api = require('express').Router();
 
@@ -26,5 +27,5 @@ api.get('/:genreName', (req, res, next) => {
         .then(albums => res.json(albums))
         .catch(next);
 })
-    
+
 module.exports = api;

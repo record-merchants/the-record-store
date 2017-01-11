@@ -18,13 +18,13 @@ function login (request, done) {
 
 describe('User API', () => {
 
-  describe('see other users', () => 
+  describe('see other users', () =>
     it('When not logged in as admin, GET / fails 401 (Unauthorized)', () =>
       request(app)
             // Add test for auth here
         .get(`/api/users`)
         .expect(401)
-    ),    
+    ),
     it('as an admin -- GET / returns 200 (Successful)', () =>
       request(app)
         .get('/api/users')
@@ -33,7 +33,7 @@ describe('User API', () => {
   )
 
   describe('see one other user', () =>
-    it('When not logged in as admin, GET /:userId fails 401 (Unauthorized)', () => 
+    it('When not logged in as admin, GET /:userId fails 401 (Unauthorized)', () =>
       request(app)
         // Add test for auth here
         .get('/api/users/1')
@@ -45,8 +45,8 @@ describe('User API', () => {
         .expect(200)
     )
   )
-  
-  describe('create an account', () => 
+
+  describe('create an account', () =>
     // it('When not logged in as admin, POST fails 401 (Unauthorized', () =>
     //   request(app)
     //     .post('/api/users')
@@ -59,7 +59,7 @@ describe('User API', () => {
     //     })
     //     .expect(401)
     // )
-    it('-- POST creates a user when logged in as admin', () => 
+    it('-- POST creates a user when logged in as admin', () =>
       request(app)
         .post('/api/users')
         .send({
@@ -91,7 +91,7 @@ describe('User API', () => {
     )
   )
 
-  describe('deleting users', () => 
+  describe('deleting users', () =>
     // it('When not logged in or not an admin, DELETE /:userId fails 401 (Unauthorized)', () =>
     //   request(app)
     //     .delete('/api/users/1')
@@ -108,8 +108,9 @@ describe('User API', () => {
     )
   )
 
+  // EI: make this test even smaller - that it will only get a successful response if user is an admin, for instance
   // PASSWORD RESET TEST -- ASK HOW TO DO THIS
-  // describe('triggering password reset', () => 
+  // describe('triggering password reset', () =>
   //   it('When logged in as an admin, can prompt a user to reset his/her password', () =>
   //     request(app)
   //       .put('/api/users/1')
@@ -128,7 +129,7 @@ describe('User API', () => {
 //         .redirects(1)
 //         .then(res => expect(res.body).to.contain({
 //         email: 'eve@interloper.com'
-//         }))        
+//         }))
 //     )
 // })
 })

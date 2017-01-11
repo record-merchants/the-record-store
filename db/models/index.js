@@ -9,9 +9,13 @@ const Album = require('./album')
 const Shipping = require('./shipping')
 const CreditCard = require('./credit_card')
 
+// EI: what if user wants to buy multiple copies of the same album?
 Album.belongsTo(User)
 User.hasMany(Album)
+
 Shipping.belongsTo(User)
+
+// EI: storing credit cards presents us with some new security challenges; for MVP, we can just let a 3rd party API handle payment info for us, so we don't need to store this
 User.hasMany(CreditCard)
 CreditCard.belongsTo(User)
 

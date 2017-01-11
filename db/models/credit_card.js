@@ -1,6 +1,8 @@
 const Sequelize = require('sequelize')
 const db = require('APP/db')
 
+// EI: contact info is important, but we'll be relying on a 3rd party API (Stripe) to collect payment information for us.
+
 module.exports = db.define('credit_card', {
   card_number: {
     type: Sequelize.STRING,
@@ -12,14 +14,14 @@ module.exports = db.define('credit_card', {
           throw new Error('Invalid CC number')
         }
       }
-      // isCreditCard: true 
+      // isCreditCard: true
     }
   },
   expiration_month: {
     type: Sequelize.INTEGER,
     allowNull: false,
     validate: {
-      min: 1, 
+      min: 1,
       max: 12
       // isInt: true
     }

@@ -13,6 +13,9 @@ import { loadReviews } from './reducers/AlbumReviewsReducer'
 
 import store from './store'
 
+
+import ReviewForm from './components/ReviewForm'
+
 const fetchAllData = () => {
   store.dispatch(loadAlbums())
 }
@@ -29,6 +32,7 @@ ReactDOM.render(
       <Route path="/" component={App} onEnter={ fetchAllData }>
         <Route path="/home" component={ AllAlbumsContainer } />
         <Route path="/albums/:albumId" component={AlbumContainer} onEnter={onAlbumEnter} />
+        <Route path="/restricted" component={ReviewForm} /> 
         <IndexRedirect to="/home" />
       </Route>
     </Router>

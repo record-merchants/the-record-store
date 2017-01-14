@@ -41,7 +41,9 @@ export default class extends Component {
               <img src={album.image_front} className="img-responsive" />
             </div>
             <div>
-              <button type="button" className="btn btn-info" onClick={this.onClick}>Reviews</button>
+              <div>
+                <button type="button" className="btn btn-info" onClick={this.onClick}>Reviews</button>
+              </div>
               <div className="row">
                 {this.state.edit && <ReviewForm />}
               </div>

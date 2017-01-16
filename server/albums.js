@@ -25,6 +25,7 @@ api.get('/:albumId', (req, res, next) => {
     .catch(next)
 })
 
+// EI: make URI more RESTful
 api.put('/:albumId/decrement/:quantity', (req, res, next) => {
 	Album.findById(+req.params.albumId)
 	.then((foundAlbum) => {

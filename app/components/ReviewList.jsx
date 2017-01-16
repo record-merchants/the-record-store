@@ -1,8 +1,8 @@
 import React from 'react'
 
 const ReviewList = ({ selectedAlbum, reviews }) => {
-
   const listOfReviews = reviews.map(review => {
+    // EI: make this its own component?
     var starCons = []
     for (let i = 1; i <= review.stars; i++) {
       starCons.push(

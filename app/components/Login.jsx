@@ -13,6 +13,7 @@ export const Login = (props) => {
          <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sign In <span className="caret"></span></a>
          <ul className="dropdown-menu">
            <li>
+            {/* EI: pass down onSubmit method? */}
              <form className="navbar-form" onSubmit={evt => {
                  evt.preventDefault()
                  login(evt.target.username.value, evt.target.password.value)
@@ -53,10 +54,13 @@ export const Login = (props) => {
     </div>
   )
 
-  console.log('AUTHENTICATED', authenticated)
+  // EI: don't forget to take out console logs
+  // console.log('AUTHENTICATED', authenticated)
   return authenticated ? loggedIn : loggedOut
 
 }
+
+// EI: would be nice to stick this in its own container file
 
 import {login, logout} from 'APP/app/reducers/auth'
 import {connect} from 'react-redux'

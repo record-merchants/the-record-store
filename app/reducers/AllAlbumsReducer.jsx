@@ -41,11 +41,16 @@ export const updateAlbum = (updatedAlbum) => {
 
 export const loadAlbums = () => dispatch => {
   axios.get(`/api/albums`)
-  .then(response => dispatch(findAlbums(response.data)))
+  .then(res => res.data)
+  // EI: doing this helps us have semantic variable names
+  .then(albums => dispatch(findAlbums(albums)))
   .catch(err => console.error('unable to load albums', err))
 }
 
 export const updateAlbumQuantity = (albumId, amount) => dispatch => {
+  /*
+    EI: our URIs should be about identifying a resource, and the HTTP verb should indicate what we want to do to that resource... if this is for an admin to update the inventory for a specific album, then you'd probably want to make a PUT request to /api/albums/:albumId
+  */
   axios.get(`/api/albums/${albumId}/decrement/${amount}`)
   .then(response => {
     const newlyUpdatedAlbum = response.data

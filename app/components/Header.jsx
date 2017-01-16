@@ -3,6 +3,7 @@ import Login from './Login'
 import Search from './Search'
 import { Link } from 'react-router'
 
+// EI: this can be a dumb component
 export default class Header extends Component {
   render(){
     return (

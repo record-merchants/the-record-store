@@ -67,6 +67,7 @@ api.get('/:userId/cart', (req, res, next) => {
 		include: [Album]
 	})
 	.then(results => {
+		// EI: semantic variables! also, is this formatting necessary?
 		let formattedResults = results.map(result => result.dataValues.albums.map(album => album.dataValues))
 		res.json(formattedResults)
 	})

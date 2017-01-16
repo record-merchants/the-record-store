@@ -3,6 +3,8 @@ import Dropdown from './Dropdown'
 import ReviewForm from './ReviewForm'
 import ReviewList from './ReviewList'
 
+// EI: front end tests?
+
 export default class SingleAlbum extends Component {
   constructor(props) {
     super(props)
@@ -14,6 +16,7 @@ export default class SingleAlbum extends Component {
     this.onClick = this.onClick.bind(this)
     this.onFormSubmit = this.onFormSubmit.bind(this)
   }
+
   onClick() {
     this.setState({
       edit: !this.state.edit
@@ -26,6 +29,7 @@ export default class SingleAlbum extends Component {
     })
   }
 
+  // EI: move this to a ReviewForm container component?
   onFormSubmit(event, reviewRating) {
     const { createReview, selectedAlbum } = this.props
     let reviewInfo = {
@@ -35,6 +39,7 @@ export default class SingleAlbum extends Component {
     createReview(+selectedAlbum.id, reviewInfo)
   }
 
+  // EI: why is this necessary?
   componentWillMount() {
     this.setState({
       quantity: 1
@@ -44,6 +49,7 @@ export default class SingleAlbum extends Component {
   render() {
     const album = this.props.selectedAlbum
     const averageRating = []
+    // EI: make a Stars component?
     if (this.props.selectedAlbum.rating) {
       for (let i = 1; i <= this.props.selectedAlbum.rating; i++) {
         averageRating.push(
@@ -99,6 +105,3 @@ export default class SingleAlbum extends Component {
     )
   }
 }
-
-
-// <span value="1" className="glyphicon glyphicon-star" ></span>

@@ -17,6 +17,7 @@ User.hasMany(Shipping)
 User.hasMany(CreditCard)
 CreditCard.belongsTo(User)
 
+// AR: associate ShoppingCartItem with Album/User?
 Album.belongsToMany(User, {through: ShoppingCartItem})
 User.belongsToMany(Album, {through: ShoppingCartItem})
 

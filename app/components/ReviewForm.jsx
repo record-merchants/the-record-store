@@ -18,6 +18,7 @@ class ReviewForm extends React.Component {
   }
 
   render(){
+    // EI: this would be fine inline too
     let options = []
     for (let i = 5; i > 0; i--) {
       options.push(
@@ -25,6 +26,7 @@ class ReviewForm extends React.Component {
       )
     }
     return (
+        {/* EI: where is onSubmit being passed down from? */}
         <form onSubmit={ event => this.props.onSubmit(event, this.state.myRating) }>
           <div className="form-group">
             <textarea
@@ -46,6 +48,7 @@ class ReviewForm extends React.Component {
     )
   }
 }
+
 //validation
 ReviewForm.propTypes = {
   onSubmit: React.PropTypes.func.isRequired

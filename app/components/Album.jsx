@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { Component } from 'react';
 import Dropdown from './Dropdown';
 import ReviewForm from './ReviewForm';
@@ -5,12 +6,23 @@ import ReviewForm from './ReviewForm';
 export default class extends Component {
   constructor(props) {
     super(props);
+=======
+import React, { Component } from 'react'
+import Dropdown from './Dropdown'
+import ReviewForm from './ReviewForm'
+import ReviewList from './ReviewList'
+
+export default class SingleAlbum extends Component {
+  constructor(props) {
+    super(props)
+>>>>>>> update-seed
     this.state = {
       quantity: 0,
       edit: false
     }
     this.handleChange = this.handleChange.bind(this)
     this.onClick = this.onClick.bind(this)
+<<<<<<< HEAD
   }
 
   onClick(event) {
@@ -23,6 +35,29 @@ export default class extends Component {
     this.setState({
       quantity: event.target.value
     })
+=======
+    this.onFormSubmit = this.onFormSubmit.bind(this)
+  }
+  onClick() {
+    this.setState({
+      edit: !this.state.edit
+    })
+  }
+
+  handleChange(event) {
+    this.setState({
+      quantity: event.target.value
+    })
+  }
+
+  onFormSubmit(event, reviewRating) {
+    const { createReview, selectedAlbum } = this.props
+    let reviewInfo = {
+      description: event.target.description.value,
+      stars: +reviewRating
+    }
+    createReview(+selectedAlbum.id, reviewInfo)
+>>>>>>> update-seed
   }
 
   componentWillMount() {
@@ -33,6 +68,7 @@ export default class extends Component {
 
   render() {
     const album = this.props.selectedAlbum
+<<<<<<< HEAD
     return (
       <div className="container">
         <div className="row">
@@ -47,12 +83,30 @@ export default class extends Component {
               <div className="row">
                 {this.state.edit && <ReviewForm />}
               </div>
+=======
+    const averageRating = []
+    if (this.props.selectedAlbum.rating) {
+      for (let i = 1; i <= this.props.selectedAlbum.rating; i++) {
+        averageRating.push(
+          <span key={ i } className="glyphicon glyphicon-star" style={{color: 'yellow'}} />
+        )
+      }
+    }
+
+    return (
+      <div className="container single-album">
+        <div className="row">
+          <div className="col-md-6">
+            <div className="image">
+              <img src={`../${album.image_front}`} className="img-responsive" />
+>>>>>>> update-seed
             </div>
           </div>
           <div className="col-md-6">
             <div className="text text-center">
               <h3>{album.title}</h3>
               <h4>{album.artist}</h4>
+<<<<<<< HEAD
               <p>{album.description}</p>
             </div>
             <div className="price col-sm-4">
@@ -69,3 +123,42 @@ export default class extends Component {
 
   }
 }
+=======
+              { this.props.selectedAlbum.rating && <h2>{ averageRating }</h2> }
+              <small>{ this.props.reviews.length } reviews</small>
+              <hr />
+              <p>{album.description}</p>
+            </div>
+            <div className="row">
+              <div className="price col-sm-4">
+                Price: ${album.cost}
+              </div>
+              <div className="col-sm-4">
+                <Dropdown onChange={this.handleChange} album={album} />
+              </div>
+              <div className="col-sm-4">
+                <button type="button" className="col-sm-4 btn btn-success add-to-cart-btn">Add to Cart</button>
+              </div>
+            </div>
+            <div className="review-form">
+              <div>
+                <button type="button" className="btn btn-info" onClick={this.onClick}>Write a Review</button>
+              </div>
+              {this.state.edit && <ReviewForm onSubmit={ this.onFormSubmit } />}
+            </div>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col col-centered">
+            <ReviewList reviews={this.props.reviews} selectedAlbum={this.props.selectedAlbum} />
+          </div>
+        </div>
+      </div>
+
+    )
+  }
+}
+
+
+// <span value="1" className="glyphicon glyphicon-star" ></span>
+>>>>>>> update-seed

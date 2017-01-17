@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-import React, { Component } from 'react';
-import Dropdown from './Dropdown';
-import ReviewForm from './ReviewForm';
-
-export default class extends Component {
-  constructor(props) {
-    super(props);
-=======
 import React, { Component } from 'react'
 import Dropdown from './Dropdown'
 import ReviewForm from './ReviewForm'
@@ -15,27 +6,12 @@ import ReviewList from './ReviewList'
 export default class SingleAlbum extends Component {
   constructor(props) {
     super(props)
->>>>>>> update-seed
     this.state = {
       quantity: 0,
       edit: false
     }
     this.handleChange = this.handleChange.bind(this)
     this.onClick = this.onClick.bind(this)
-<<<<<<< HEAD
-  }
-
-  onClick(event) {
-    this.setState({
-      edit: !this.state.edit
-    })
-  }
-
-  handleChange(event) {
-    this.setState({
-      quantity: event.target.value
-    })
-=======
     this.onFormSubmit = this.onFormSubmit.bind(this)
   }
   onClick() {
@@ -57,7 +33,6 @@ export default class SingleAlbum extends Component {
       stars: +reviewRating
     }
     createReview(+selectedAlbum.id, reviewInfo)
->>>>>>> update-seed
   }
 
   componentWillMount() {
@@ -68,22 +43,6 @@ export default class SingleAlbum extends Component {
 
   render() {
     const album = this.props.selectedAlbum
-<<<<<<< HEAD
-    return (
-      <div className="container">
-        <div className="row">
-          <div className="col-md-6">
-            <div className="image">
-              <img src={album.image_front} className="img-responsive" />
-            </div>
-            <div>
-              <div>
-                <button type="button" className="btn btn-info" onClick={this.onClick}>Reviews</button>
-              </div>
-              <div className="row">
-                {this.state.edit && <ReviewForm />}
-              </div>
-=======
     const averageRating = []
     if (this.props.selectedAlbum.rating) {
       for (let i = 1; i <= this.props.selectedAlbum.rating; i++) {
@@ -99,31 +58,12 @@ export default class SingleAlbum extends Component {
           <div className="col-md-6">
             <div className="image">
               <img src={`../${album.image_front}`} className="img-responsive" />
->>>>>>> update-seed
             </div>
           </div>
           <div className="col-md-6">
             <div className="text text-center">
               <h3>{album.title}</h3>
               <h4>{album.artist}</h4>
-<<<<<<< HEAD
-              <p>{album.description}</p>
-            </div>
-            <div className="price col-sm-4">
-              Price: ${album.cost}
-            </div>
-            <div className="col-sm-4">
-              <Dropdown onChange={this.handleChange} album={album}/>
-            </div>
-            <button type="button" className="col-sm-4 btn btn-success">Add to Cart</button>
-          </div>
-        </div>
-      </div>
-    )
-
-  }
-}
-=======
               { this.props.selectedAlbum.rating && <h2>{ averageRating }</h2> }
               <small>{ this.props.reviews.length } reviews</small>
               <hr />
@@ -161,4 +101,3 @@ export default class SingleAlbum extends Component {
 
 
 // <span value="1" className="glyphicon glyphicon-star" ></span>
->>>>>>> update-seed

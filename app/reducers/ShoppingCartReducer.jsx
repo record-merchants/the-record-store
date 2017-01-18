@@ -1,4 +1,6 @@
+
 import axios from 'axios'
+import store from '../store'
 
 /* -----------------    ACTIONS     ------------------ */
 
@@ -56,6 +58,7 @@ export const getCartFromDB = user_id => dispatch => {
   .then(cart => {
     // Transformation of data returned by DB into format accepted by store
     let newCart = cart.data[0]
+    console.log('NEWCART', newCart)
     dispatch(findCart(newCart))
   })
   .catch(err => console.error('unable to get cart info', err))
@@ -69,14 +72,14 @@ export const updateQuantityInDB = (user_id, album_id, quantity) => dispatch => {
   .catch(err => console.error('unable to update quantity', err))
 }
 
-export const addAlbumToDB = (user_id, album_id, quantity) => dispatch => {
-   axios.post(`/api/users/${user_id}/cart/${album_id}`, {
+export const addAlbumToDB = (user_id, album_id, quantity) => {
+  axios.post(`/api/users/${user_id}/cart/${album_id}`, {
       user_id,
       quantity,
       album_id
   })
   .then(() => {
-    dispatch(getCartFromDB(user_id))
+    store.dispatch(getCartFromDB(user_id))
   })
   .catch(err => console.error('unable to add album to cart', err))
 }

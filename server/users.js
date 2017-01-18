@@ -22,7 +22,10 @@ api.post('/', (req, res, next) =>
 	.catch(next)
 )
 
+// ******************************************
+
 api.get('/guest', (req, res, next) => res.send(req.session.guestUser))
+
 
 api.post('/guest', (req, res, next) =>
 	User.create({
@@ -30,14 +33,13 @@ api.post('/guest', (req, res, next) =>
 		lastName: 'User',
 	})
 	.then(user => {
-		console.log('USER', user)
 		req.session.guestUser = JSON.stringify(user)
-
 		res.status(201).json(user)
 	})
 	.catch(console.error.bind(console))
 )
 
+// ******************************************
 // SINGLE USER
 
 // add mustBeLoggedIn, selfOnly AFTER AUTH IS WORKING
@@ -93,7 +95,7 @@ api.get('/:userId/cart', (req, res, next) => {
 
 // FOR ADDING A NEW ITEM TO CART
 api.post('/:userId/cart/:album_id', (req, res, next) => {
-	ShoppingCartItem.findOrCreate({
+	return ShoppingCartItem.findOrCreate({
 		where: {
 			album_id: req.params.album_id,
 			user_id: Number(req.params.userId)
@@ -105,7 +107,7 @@ api.post('/:userId/cart/:album_id', (req, res, next) => {
 	.spread((item, created) => {
 		if (!created) {
 			let newQuantity = item.quantity + Number(req.body.quantity)
-			item.update({ quantity: newQuantity })
+			 item.update({ quantity: newQuantity })
 			.then(res.sendStatus(200))
 		} else {
 			res.sendStatus(200)

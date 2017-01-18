@@ -48,11 +48,13 @@ export default class SingleAlbum extends Component {
     const createGuestUser = this.props.createGuestUser
     const quantity = this.state[albumId] ? this.state[albumId] : 1
 
+
     if (userId == 'guest' && !guestId) {
       store.dispatch(createGuestUser(albumId, quantity))
     } else {
       let currentUserId = userId === 'guest' ? guestId : userId
-      return store.dispatch(addAlbumToDB(currentUserId, albumId, quantity))
+      console.log('CURRENTUSERID, ALBUMID, QUANTITY', currentUserId, albumId, quantity)
+      return addAlbumToDB(currentUserId, albumId, quantity)
     }
   }
 

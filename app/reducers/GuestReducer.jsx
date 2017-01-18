@@ -13,7 +13,7 @@ export const createGuest = (guest) => {
 
 // ******************************************
 export const createGuestUser = (albumId, quantity) => dispatch => {
-  axios.post('api/users/guest')
+  axios.post('/api/users/guest')
   .then(guest => guest.data)
   .then(guest => {
      dispatch(createGuest(guest))
@@ -27,10 +27,10 @@ export const createGuestUser = (albumId, quantity) => dispatch => {
 }
 
 export const doIHaveGuestId = () => dispatch => {
-  axios.get('api/users/guest')
+  axios.get('/api/users/guest')
   .then(guest => guest.data)
   .then(guest => {
-    console.log('GUEST', guest)
+    console.log('DO I HAVE GUESTID', guest)
 
     dispatch(createGuest(guest))
   })

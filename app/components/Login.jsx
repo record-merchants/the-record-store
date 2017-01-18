@@ -9,7 +9,7 @@ export const Login = (props) => {
 
   const loggedOut = (
     <ul className="nav navbar-nav navbar-right" id="blue">
-      <li><Link to={`${guestUserId}/cart`}><span className="glyphicon glyphicon-shopping-cart"></span></Link></li>
+      <li><Link to={`/${guestUserId}/cart`}><span className="glyphicon glyphicon-shopping-cart"></span></Link></li>
       <li className="dropdown">
          <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sign In <span className="caret"></span></a>
          <ul className="dropdown-menu">
